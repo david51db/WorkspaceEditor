@@ -1,0 +1,8 @@
+//
+// Created by David on 5/17/2026.
+//
+
+#ifndef WORKSPACEEDITOR_BUFFER_H
+#define WORKSPACEEDITOR_BUFFER_H
+
+#endif //WORKSPACEEDITOR_BUFFER_H
