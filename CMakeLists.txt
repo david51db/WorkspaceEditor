@@ -8,4 +8,11 @@ add_executable(WorkspaceEditor main.cpp
         include/Document.h
         include/TextDocument.h
         include/ToDoDocument.h
-        include/FileManager.h)
+        include/FileManager.h
+        include/EditorSession.h
+        include/Command.h
+        include/CommandHistory.h
+        include/DocumentFactory.h
+        include/EditorException.h
+        include/Observer.h
+        include/Repository.h)
