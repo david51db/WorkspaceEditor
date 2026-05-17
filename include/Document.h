@@ -3,7 +3,6 @@
 #ifndef WORKSPACEEDITOR_DOCUMENT_H
 #define WORKSPACEEDITOR_DOCUMENT_H
 
-#include <vector>
 #include <string>
 
 enum class DocumentType {
@@ -12,6 +11,7 @@ enum class DocumentType {
 };
 
 class Document {
+protected:
     std::string name;
     std::string path;
     DocumentType type;

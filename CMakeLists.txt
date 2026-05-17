@@ -5,4 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(WorkspaceEditor main.cpp
         include/Buffer.h
-        include/Document.h)
+        include/Document.h
+        include/TextDocument.h
+        include/ToDoDocument.h
+        include/FileManager.h)
