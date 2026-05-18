@@ -3,6 +3,7 @@
 //
 
 #include "TextDocument.h"
+#include "FileManager.h"
 #include <memory>
 #include <utility>
 using namespace std;
@@ -13,11 +14,11 @@ TextDocument::TextDocument(std::unique_ptr<Buffer> text, const std::string &name
                            DocumentType type) : Document(name, path, type), text(std::move(text)) {}
 
 void TextDocument::load() {
-    //to do
+    text=FileManager::openFile(getPath());
 }
 
 void TextDocument::save() const {
-    /// to do
+    FileManager::saveFile(getPath(), *getText());
 }
 
 DocumentType TextDocument::getType() const {

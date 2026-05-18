@@ -26,7 +26,6 @@ public:
 
     virtual void load()=0;
     virtual void save() const=0;
-    virtual DocumentType getType() const=0;
 
     const std::string& getName() const;
     const std::string& getPath() const;

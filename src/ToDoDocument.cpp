@@ -4,6 +4,7 @@
 
 #include "ToDoDocument.h"
 #include "Document.h"
+#include "FileManager.h"
 using namespace std;
 
 ToDoDocument::ToDoDocument() :Document(){}
@@ -11,11 +12,11 @@ ToDoDocument::ToDoDocument() :Document(){}
 ToDoDocument::ToDoDocument(std::unique_ptr<Buffer> text, std::vector<bool> checkBox,const std::string& name, const std::string& path, DocumentType type):Document(name, path, type),text(std::move(text)),checkBox(std::move(checkBox)) {}
 
 void ToDoDocument::save() const {
-    //to do
+    FileManager::saveFile(getPath(), *getText());
 }
 
 void ToDoDocument::load() {
-    //to do
+    text=FileManager::openFile(getPath());
 }
 
 const std::unique_ptr<Buffer> &ToDoDocument::getText() const {

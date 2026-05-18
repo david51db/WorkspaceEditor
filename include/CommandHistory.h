@@ -11,6 +11,7 @@
 
 class CommandHistory {
     std::vector<std::unique_ptr<Command>> history;
+    std::vector<std::unique_ptr<Command>> redoStack;
 
 public:
     void push(std::unique_ptr<Command>);
