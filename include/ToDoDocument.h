@@ -16,11 +16,11 @@ class ToDoDocument: public Document {
 
 public:
     ToDoDocument();
-    ToDoDocument(std::unique_ptr<Buffer> text, std::vector<bool> checkBox);
+    ToDoDocument(std::unique_ptr<Buffer> text, std::vector<bool> checkBox,const std::string& name, const std::string& path, DocumentType type);
     ToDoDocument(const ToDoDocument& obj)=delete;
     ToDoDocument& operator=(const ToDoDocument& obj)=delete;
-    ToDoDocument(ToDoDocument&& obj) noexcept;
-    ToDoDocument& operator=(ToDoDocument&& obj) noexcept;
+    ToDoDocument(ToDoDocument&& obj) =default;
+    ToDoDocument& operator=(ToDoDocument&& obj) =default;
     ~ToDoDocument() override=default;
 
     void load() override;

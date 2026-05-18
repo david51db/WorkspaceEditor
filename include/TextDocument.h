@@ -14,11 +14,11 @@ class TextDocument: public Document {
 
 public:
     TextDocument();
-    TextDocument(std::unique_ptr<Buffer> text);
+    TextDocument(std::unique_ptr<Buffer> text, const std::string& name, const std::string& path, DocumentType type);
     TextDocument(const TextDocument& obj)=delete;
     TextDocument& operator=(const TextDocument& obj)=delete;
-    TextDocument(TextDocument&& obj) noexcept;
-    TextDocument& operator=(TextDocument&& obj) noexcept;
+    TextDocument(TextDocument&& obj)=default;
+    TextDocument& operator=(TextDocument&& obj)=default;
     ~TextDocument() override=default;
 
     void load() override;

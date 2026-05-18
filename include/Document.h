@@ -11,12 +11,12 @@ enum class DocumentType {
 };
 
 class Document {
-protected:
     std::string name;
     std::string path;
     DocumentType type;
 
 public:
+    Document()=default;
     Document(const std::string& name, const std::string& path, DocumentType type);
     Document(const Document& obj)=default;
     Document& operator=(const Document& obj)=default;

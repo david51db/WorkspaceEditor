@@ -15,4 +15,10 @@ add_executable(WorkspaceEditor main.cpp
         include/DocumentFactory.h
         include/EditorException.h
         include/Observer.h
-        include/Repository.h)
+        include/Repository.h
+        src/Buffer.cpp
+        src/Document.cpp
+        src/TextDocument.cpp
+        src/ToDoDocument.cpp)
+
+include_directories(include)
