@@ -20,6 +20,7 @@ add_executable(WorkspaceEditor main.cpp
         src/Document.cpp
         src/TextDocument.cpp
         src/ToDoDocument.cpp
-        src/FileManager.cpp)
+        src/FileManager.cpp
+        src/DocumentFactory.cpp)
 
 include_directories(include)
