@@ -3,8 +3,9 @@
 #define WORKSPACEEDITOR_BUFFER_H
 #include <string>
 #include <vector>
+#include "Observer.h"
 
-class Buffer {
+class Buffer : public Subject {
     std::vector<std::string> text;
 
 public:

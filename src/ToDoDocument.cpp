@@ -9,7 +9,8 @@ using namespace std;
 
 ToDoDocument::ToDoDocument() :Document(){}
 
-ToDoDocument::ToDoDocument(std::unique_ptr<Buffer> text, std::vector<bool> checkBox,const std::string& name, const std::string& path, DocumentType type):Document(name, path, type),text(std::move(text)),checkBox(std::move(checkBox)) {}
+ToDoDocument::ToDoDocument(std::vector<bool> checkBox, const std::string& name, const std::string& path, DocumentType type)
+    : Document(name, path, type, std::make_unique<Buffer>()), checkBox(std::move(checkBox)) {}
 
 void ToDoDocument::save() const {
     FileManager::saveFile(getPath(), *getText());

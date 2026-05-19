@@ -15,6 +15,7 @@ void Buffer::insertLine(int pos, const std::string &line) {
         throw EditorException("Invalid line position");
     }
     text.insert(pos+text.begin(), line);
+    notify();
 }
 
 void Buffer::deleteLine(int pos) {
@@ -22,6 +23,7 @@ void Buffer::deleteLine(int pos) {
         throw EditorException("Invalid line position");
     }
     text.erase(pos+text.begin());
+    notify();
 }
 
 const std::string &Buffer::getLine(int pos) const {

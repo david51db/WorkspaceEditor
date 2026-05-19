@@ -22,6 +22,8 @@ add_executable(WorkspaceEditor main.cpp
         src/ToDoDocument.cpp
         src/FileManager.cpp
         src/DocumentFactory.cpp
-        src/CommandHistory.cpp)
+        src/CommandHistory.cpp
+        src/Observer.cpp
+        src/EditorSession.cpp)
 
 include_directories(include)

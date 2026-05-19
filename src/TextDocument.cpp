@@ -10,8 +10,8 @@ using namespace std;
 
 TextDocument::TextDocument():Document(){};
 
-TextDocument::TextDocument(std::unique_ptr<Buffer> text, const std::string &name, const std::string &path,
-                           DocumentType type) : Document(name, path, type), text(std::move(text)) {}
+TextDocument::TextDocument(const std::string& name, const std::string& path, DocumentType type)
+    : Document(name, path, type, std::make_unique<Buffer>()) {}
 
 void TextDocument::load() {
     text=FileManager::openFile(getPath());

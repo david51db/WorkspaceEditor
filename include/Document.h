@@ -5,19 +5,23 @@
 
 #include <string>
 
+#include "Buffer.h"
+
 enum class DocumentType {
     Text,
     ToDo
 };
 
 class Document {
+protected:
+    std::unique_ptr<Buffer> text;
     std::string name;
     std::string path;
     DocumentType type;
 
 public:
-    Document()=default;
-    Document(const std::string& name, const std::string& path, DocumentType type);
+    Document() : text(std::make_unique<Buffer>()) {}
+    Document(const std::string& name, const std::string& path, DocumentType type, std::unique_ptr<Buffer> text);
     Document(const Document& obj)=default;
     Document& operator=(const Document& obj)=default;
     Document(Document&& obj)=default;
@@ -26,9 +30,13 @@ public:
 
     virtual void load()=0;
     virtual void save() const=0;
+    virtual DocumentType getType() const = 0;
+    virtual const std::unique_ptr<Buffer>& getText() const=0;
+
 
     const std::string& getName() const;
     const std::string& getPath() const;
+    void setPath(const std::string& p);
 
 };
 

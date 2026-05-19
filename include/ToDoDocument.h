@@ -11,12 +11,11 @@
 #include "Document.h"
 
 class ToDoDocument: public Document {
-    std::unique_ptr<Buffer> text;
     std::vector<bool> checkBox;
 
 public:
     ToDoDocument();
-    ToDoDocument(std::unique_ptr<Buffer> text, std::vector<bool> checkBox,const std::string& name, const std::string& path, DocumentType type);
+    ToDoDocument(std::vector<bool> checkBox,const std::string& name, const std::string& path, DocumentType type);
     ToDoDocument(const ToDoDocument& obj)=delete;
     ToDoDocument& operator=(const ToDoDocument& obj)=delete;
     ToDoDocument(ToDoDocument&& obj) =default;
@@ -26,8 +25,9 @@ public:
     void load() override;
     void save() const override;
     DocumentType getType() const override;
+    const std::unique_ptr<Buffer>& getText() const override;
 
-    const std::unique_ptr<Buffer>& getText() const;
+
     const std::vector<bool>& getCheckBoxes() const;
 };
 

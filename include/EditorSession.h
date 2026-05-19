@@ -12,7 +12,9 @@ class EditorSession {
     std::unique_ptr<Document> currentDocument;
     std::pair<int, int> cursor;
     std::unique_ptr<CommandHistory> history;
-    EditorSession()=default;
+    EditorSession();
+
+
 public:
     static EditorSession& getInstance() {
         static EditorSession instance;

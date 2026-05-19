@@ -10,11 +10,10 @@
 #include "Document.h"
 
 class TextDocument: public Document {
-    std::unique_ptr<Buffer> text;
 
 public:
     TextDocument();
-    TextDocument(std::unique_ptr<Buffer> text, const std::string& name, const std::string& path, DocumentType type);
+    TextDocument(const std::string& name, const std::string& path, DocumentType type);
     TextDocument(const TextDocument& obj)=delete;
     TextDocument& operator=(const TextDocument& obj)=delete;
     TextDocument(TextDocument&& obj)=default;
@@ -25,7 +24,8 @@ public:
     void save() const override;
     DocumentType getType() const override;
 
-    const std::unique_ptr<Buffer>& getText() const;
+    const std::unique_ptr<Buffer>& getText() const override;
+
 };
 
 
