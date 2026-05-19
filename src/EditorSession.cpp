@@ -3,8 +3,8 @@
 //
 
 #include "EditorSession.h"
-#include <cstring>
-
+#include <sstream>
+#include <vector>
 #include "DocumentFactory.h"
 #include "EditorException.h"
 using namespace std;
@@ -38,5 +38,27 @@ void EditorSession::undo() {
 }
 
 int EditorSession::getWordCount() const {
+    const auto& currentText=currentDocument->getText()->getLines();
+    int wordCount=0;
+    for (const auto& line:currentText) {
+        istringstream stream(line);
+        string word;
+        while(stream>>word)wordCount++;
+    }
+    return wordCount;
+}
 
+void EditorSession::insertText(const std::string &text) {
+    auto line=currentDocument->getText()->getLine(cursor.first);
+    line.insert(cursor.second,text);
+    currentDocument->getText()->deleteLine(cursor.first);
+    currentDocument->getText()->insertLine(cursor.first, line);
+}
+
+void EditorSession::deleteLine() {
+    currentDocument->getText()->deleteLine(cursor.first);
+}
+
+std::pair<int, int> EditorSession::getCursor() const {
+    return cursor;
 }
