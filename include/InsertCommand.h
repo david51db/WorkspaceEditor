@@ -17,7 +17,7 @@ class InsertCommand: public Command {
 
 public:
     InsertCommand(Buffer& buffer, const std::string& text, int line, int column);
-    ~InsertCommand()=default;
+    ~InsertCommand() override=default;
 
     void execute() override;
     void undo() override;

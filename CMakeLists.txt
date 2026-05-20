@@ -26,6 +26,8 @@ add_executable(WorkspaceEditor main.cpp
         src/Observer.cpp
         src/EditorSession.cpp
         include/InsertCommand.h
-        src/InsertCommand.cpp)
+        src/InsertCommand.cpp
+        include/DeleteCommand.h
+        src/DeleteCommand.cpp)
 
 include_directories(include)
