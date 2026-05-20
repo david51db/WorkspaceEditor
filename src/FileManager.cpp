@@ -9,11 +9,11 @@
 using namespace std;
 
 
-unique_ptr<Buffer> FileManager::openFile(const std::string &path) {
+shared_ptr<Buffer> FileManager::openFile(const std::string &path) {
     ifstream file(path);
     if (!file.is_open())throw EditorException("Cannot open file: "+path);
     string line;
-    auto buffer=make_unique<Buffer>();
+    auto buffer=make_shared<Buffer>();
     int pos=0;
 
     while (getline(file, line))buffer->insertLine(pos++,line) ;

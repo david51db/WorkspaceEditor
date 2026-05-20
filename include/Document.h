@@ -14,14 +14,14 @@ enum class DocumentType {
 
 class Document {
 protected:
-    std::unique_ptr<Buffer> text;
+    std::shared_ptr<Buffer> text;
     std::string name;
     std::string path;
     DocumentType type;
 
 public:
-    Document() : text(std::make_unique<Buffer>()) {}
-    Document(const std::string& name, const std::string& path, DocumentType type, std::unique_ptr<Buffer> text);
+    Document() : text(std::make_shared<Buffer>()) {}
+    Document(const std::string& name, const std::string& path, DocumentType type, std::shared_ptr<Buffer> text);
     Document(const Document& obj)=default;
     Document& operator=(const Document& obj)=default;
     Document(Document&& obj)=default;
@@ -31,7 +31,7 @@ public:
     virtual void load()=0;
     virtual void save() const=0;
     virtual DocumentType getType() const = 0;
-    virtual const std::unique_ptr<Buffer>& getText() const=0;
+    virtual const std::shared_ptr<Buffer>& getText() const;
 
 
     const std::string& getName() const;

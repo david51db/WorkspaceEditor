@@ -10,7 +10,7 @@ using namespace std;
 ToDoDocument::ToDoDocument() :Document(){}
 
 ToDoDocument::ToDoDocument(std::vector<bool> checkBox, const std::string& name, const std::string& path, DocumentType type)
-    : Document(name, path, type, std::make_unique<Buffer>()), checkBox(std::move(checkBox)) {}
+    : Document(name, path, type, std::make_shared<Buffer>()), checkBox(std::move(checkBox)) {}
 
 void ToDoDocument::save() const {
     FileManager::saveFile(getPath(), *getText());
@@ -18,10 +18,6 @@ void ToDoDocument::save() const {
 
 void ToDoDocument::load() {
     text=FileManager::openFile(getPath());
-}
-
-const std::unique_ptr<Buffer> &ToDoDocument::getText() const {
-    return this->text;
 }
 
 DocumentType ToDoDocument::getType() const {

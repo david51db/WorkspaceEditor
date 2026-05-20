@@ -24,7 +24,6 @@ public:
     void save() const override;
     DocumentType getType() const override;
 
-    const std::unique_ptr<Buffer>& getText() const override;
 
 };
 

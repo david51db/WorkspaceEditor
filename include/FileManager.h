@@ -11,7 +11,7 @@
 
 class FileManager {
 public:
-    static std::unique_ptr<Buffer> openFile(const std::string& path);
+    static std::shared_ptr<Buffer> openFile(const std::string& path);
     static void saveFile(const std::string& path, const Buffer& buffer);
 };
 
