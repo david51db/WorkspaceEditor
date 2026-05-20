@@ -34,6 +34,8 @@ public:
     void moveCursor(std::pair<int,int> newCursor);
     int getWordCount() const;
     std::pair<int,int> getCursor() const;
+    void checkDocument() const;
+    void newLine();
 };
 
 #endif //WORKSPACEEDITOR_EDITORSESSION_H

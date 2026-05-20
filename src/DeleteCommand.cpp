@@ -24,7 +24,7 @@ void DeleteCommand::execute() {
 }
 
 void DeleteCommand::undo() {
-    if (mode == DeleteMode::Char) {
+      if (mode == DeleteMode::Char) {
         auto currentLine = buffer.getLine(line);
         currentLine.insert(column, text);
         buffer.deleteLine(line);
