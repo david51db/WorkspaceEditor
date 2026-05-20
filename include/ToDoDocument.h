@@ -29,6 +29,7 @@ public:
 
 
     const std::vector<bool>& getCheckBoxes() const;
+    void toggleCheckbox(int line);
 };
 
 

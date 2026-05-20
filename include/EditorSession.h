@@ -29,6 +29,9 @@ public:
     void insertText(const std::string& text);
     void deleteLine();
     void undo();
+    void redo();
+    void toggleCheckbox(int line);
+    void moveCursor(std::pair<int,int> newCursor);
     int getWordCount() const;
     std::pair<int,int> getCursor() const;
 };

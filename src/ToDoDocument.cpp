@@ -31,3 +31,7 @@ DocumentType ToDoDocument::getType() const {
 const std::vector<bool> &ToDoDocument::getCheckBoxes() const {
     return this->checkBox;
 }
+
+void ToDoDocument::toggleCheckbox(int line) {
+    checkBox[line] = !checkBox[line];
+}

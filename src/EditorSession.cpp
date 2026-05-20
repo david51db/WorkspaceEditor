@@ -7,6 +7,8 @@
 #include <vector>
 #include "DocumentFactory.h"
 #include "EditorException.h"
+#include "InsertCommand.h"
+#include "ToDoDocument.h"
 using namespace std;
 
 
@@ -37,6 +39,17 @@ void EditorSession::undo() {
     history->undo();
 }
 
+void EditorSession::redo() {
+    if (history->canRedo())history->redo();
+    else throw EditorException("Cannot redo.");
+}
+
+void EditorSession::toggleCheckbox(int line) {
+    auto* todo = dynamic_cast<ToDoDocument*>(currentDocument.get());
+    if (!todo) throw EditorException("Not a ToDo Document");
+    todo->toggleCheckbox(line);
+}
+
 int EditorSession::getWordCount() const {
     const auto& currentText=currentDocument->getText()->getLines();
     int wordCount=0;
@@ -49,10 +62,14 @@ int EditorSession::getWordCount() const {
 }
 
 void EditorSession::insertText(const std::string &text) {
-    auto line=currentDocument->getText()->getLine(cursor.first);
-    line.insert(cursor.second,text);
-    currentDocument->getText()->deleteLine(cursor.first);
-    currentDocument->getText()->insertLine(cursor.first, line);
+    // auto line=currentDocument->getText()->getLine(cursor.first);
+    // line.insert(cursor.second,text);
+    // currentDocument->getText()->deleteLine(cursor.first);
+    // currentDocument->getText()->insertLine(cursor.first, line);
+    auto cmd=make_unique<InsertCommand>( *currentDocument->getText(), text, getCursor().first, getCursor().second );
+    cmd->execute();
+    history->push(std::move(cmd));
+
 }
 
 void EditorSession::deleteLine() {
@@ -61,4 +78,8 @@ void EditorSession::deleteLine() {
 
 std::pair<int, int> EditorSession::getCursor() const {
     return cursor;
+}
+
+void EditorSession::moveCursor(std::pair<int, int> newCursor) {
+    this->cursor=newCursor;
 }
