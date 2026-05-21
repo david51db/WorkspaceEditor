@@ -37,6 +37,8 @@ public:
     std::pair<int,int> getCursor() const;
     void newLine();
     const Repository<std::string>& getRecentFiles() const;
+    std::shared_ptr<Buffer> getBuffer() const;
+    void deleteChar();
 };
 
 #endif //WORKSPACEEDITOR_EDITORSESSION_H

@@ -9,6 +9,7 @@
 using namespace std;
 
 void CommandHistory::push(std::unique_ptr<Command> command) {
+    redoStack.clear();
     history.push_back(std::move(command));
 }
 

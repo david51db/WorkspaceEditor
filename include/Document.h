@@ -20,7 +20,7 @@ protected:
     DocumentType type;
 
 public:
-    Document() : text(std::make_shared<Buffer>()) {}
+    Document() : text(std::make_shared<Buffer>()), type(DocumentType::Text) {}
     Document(const std::string& name, const std::string& path, DocumentType type, std::shared_ptr<Buffer> text);
     Document(const Document& obj)=default;
     Document& operator=(const Document& obj)=default;

@@ -4,6 +4,7 @@
 
 #include "ToDoDocument.h"
 #include "Document.h"
+#include "EditorException.h"
 #include "FileManager.h"
 using namespace std;
 
@@ -41,5 +42,7 @@ const std::vector<bool> &ToDoDocument::getCheckBoxes() const {
 }
 
 void ToDoDocument::toggleCheckbox(int line) {
+    if (line < 0 || line >= static_cast<int>(checkBox.size()))
+        throw EditorException("Invalid checkbox line");
     checkBox[line] = !checkBox[line];
 }

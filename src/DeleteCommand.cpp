@@ -12,8 +12,8 @@ DeleteCommand::DeleteCommand(Buffer &buffer, const std::string &text, int line, 
 void DeleteCommand::execute() {
     if (mode==DeleteMode::Char) {
         auto currentLine = buffer.getLine(line);
-        text = buffer.getLine(line);
-        currentLine.erase(column);
+        text = currentLine.substr(column, 1);
+        currentLine.erase(column, 1);
         buffer.deleteLine(line);
         buffer.insertLine(line, currentLine);
     }

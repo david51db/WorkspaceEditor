@@ -33,6 +33,23 @@ add_executable(WorkspaceEditor main.cpp
         src/NewLineCommand.cpp
         include/ToggleCheckboxCommand.h
         src/ToggleCheckboxCommand.cpp
-        include/Utils.h)
+        include/Utils.h
+        include/UI.h
+        src/UI.cpp
+        include/UIObserver.h)
 
 include_directories(include)
+
+include(FetchContent)
+FetchContent_Declare(
+        ftxui
+        GIT_REPOSITORY https://github.com/ArthurSonzogni/FTXUI
+        GIT_TAG v5.0.0
+)
+FetchContent_MakeAvailable(ftxui)
+
+target_link_libraries(WorkspaceEditor
+        PRIVATE ftxui::screen
+        PRIVATE ftxui::dom
+        PRIVATE ftxui::component
+)

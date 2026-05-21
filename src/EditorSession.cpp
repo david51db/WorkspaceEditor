@@ -30,13 +30,18 @@ void EditorSession::openFile(const std::string &path) {
 
     currentDocument->setPath(path);
     currentDocument->load();
+    cursor={0,0};
 
+    history=make_unique<CommandHistory>();
     if (!contains(recentFiles, path))
         recentFiles.add(path);
 }
 
 void EditorSession::newFile(DocumentType type) {
     currentDocument=DocumentFactory::create(type);
+    currentDocument->getText()->insertLine(0, "");
+    cursor={0,0};
+    history=make_unique<CommandHistory>();
 }
 
 void EditorSession::save() {
@@ -113,4 +118,16 @@ void EditorSession::newLine() {
 
 const Repository<std::string> &EditorSession::getRecentFiles() const {
     return recentFiles;
+}
+
+std::shared_ptr<Buffer> EditorSession::getBuffer() const {
+    checkDocument();
+    return currentDocument->getText();
+}
+
+void EditorSession::deleteChar() {
+    checkDocument();
+    auto cmd=make_unique<DeleteCommand>(*currentDocument->getText(),"", getCursor().first, getCursor().second, DeleteMode::Char);
+    cmd->execute();
+    history->push(std::move(cmd));
 }
