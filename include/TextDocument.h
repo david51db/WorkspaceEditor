@@ -21,7 +21,7 @@ public:
     ~TextDocument() override=default;
 
     void load() override;
-    void save() const override;
+    void save()  override;
     DocumentType getType() const override;
 
 

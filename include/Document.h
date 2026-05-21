@@ -29,7 +29,7 @@ public:
     virtual ~Document()=default;
 
     virtual void load()=0;
-    virtual void save() const=0;
+    virtual void save() =0;
     virtual DocumentType getType() const = 0;
     virtual const std::shared_ptr<Buffer>& getText() const;
 

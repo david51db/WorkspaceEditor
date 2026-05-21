@@ -23,12 +23,15 @@ public:
     ~ToDoDocument() override=default;
 
     void load() override;
-    void save() const override;
+    void save() override ;
     DocumentType getType() const override;
 
 
     const std::vector<bool>& getCheckBoxes() const;
     void toggleCheckbox(int line);
+
+    void insertCheckbox(int pos);
+    void removeCheckbox(int pos);
 };
 
 

@@ -2,6 +2,6 @@
 using namespace std;
 
 int main() {
-        UI::run();
+        UI::getInstance().run();
         return 0;
 }

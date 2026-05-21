@@ -9,11 +9,13 @@
 #include <memory>
 #include "Repository.h"
 
+
 class EditorSession {
     std::unique_ptr<Document> currentDocument;
     std::pair<int, int> cursor;
     std::unique_ptr<CommandHistory> history;
     Repository<std::string> recentFiles;
+    Repository<int> lineHistory;
     EditorSession();
     void checkDocument() const;
 public:
@@ -39,6 +41,10 @@ public:
     const Repository<std::string>& getRecentFiles() const;
     std::shared_ptr<Buffer> getBuffer() const;
     void deleteChar();
+    DocumentType getCurrentDocumentType() const;
+    const std::vector<bool>* getCheckboxes() const;
+    void setPath(const std::string& path);
+    const Repository<int>& getLineHistory() const;
 };
 
 #endif //WORKSPACEEDITOR_EDITORSESSION_H

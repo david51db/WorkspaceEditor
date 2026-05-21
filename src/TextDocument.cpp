@@ -3,8 +3,12 @@
 //
 
 #include "TextDocument.h"
+
+#include <filesystem>
+
 #include "FileManager.h"
 #include <memory>
+#include <string>
 #include <utility>
 using namespace std;
 
@@ -17,7 +21,11 @@ void TextDocument::load() {
     text=FileManager::openFile(getPath());
 }
 
-void TextDocument::save() const {
+void TextDocument::save() {
+    if (path.empty()) {
+        auto docs = std::filesystem::path(getenv("USERPROFILE")) / "Documents";
+        path = (docs / (text->getLine(0).substr(0, 25) + ".txt")).string();
+    }
     FileManager::saveFile(getPath(), *getText());
 }
 

@@ -24,6 +24,6 @@ shared_ptr<Buffer> FileManager::openFile(const std::string &path) {
 
 void FileManager::saveFile(const std::string &path, const Buffer &buffer) {
     ofstream file(path);
-
-    for (const auto& line: buffer.getLines()) file<<line<<"\n";
+    if (!file.is_open()) throw EditorException("Cannot save file: " + path);
+    for (const auto& line: buffer.getLines()) file << line << "\n";
 }
