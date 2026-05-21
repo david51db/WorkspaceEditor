@@ -32,6 +32,7 @@ add_executable(WorkspaceEditor main.cpp
         include/NewLineCommand.h
         src/NewLineCommand.cpp
         include/ToggleCheckboxCommand.h
-        src/ToggleCheckboxCommand.cpp)
+        src/ToggleCheckboxCommand.cpp
+        include/Utils.h)
 
 include_directories(include)

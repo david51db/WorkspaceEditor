@@ -13,6 +13,8 @@
 #include "NewLineCommand.h"
 #include "ToDoDocument.h"
 #include "ToggleCheckboxCommand.h"
+#include "Repository.h"
+#include "Utils.h"
 using namespace std;
 
 
@@ -28,6 +30,9 @@ void EditorSession::openFile(const std::string &path) {
 
     currentDocument->setPath(path);
     currentDocument->load();
+
+    if (!contains(recentFiles, path))
+        recentFiles.add(path);
 }
 
 void EditorSession::newFile(DocumentType type) {
@@ -73,10 +78,6 @@ int EditorSession::getWordCount() const {
 }
 
 void EditorSession::insertText(const std::string &text) {
-    // auto line=currentDocument->getText()->getLine(cursor.first);
-    // line.insert(cursor.second,text);
-    // currentDocument->getText()->deleteLine(cursor.first);
-    // currentDocument->getText()->insertLine(cursor.first, line);
     checkDocument();
     auto cmd=make_unique<InsertCommand>( *currentDocument->getText(), text, getCursor().first, getCursor().second );
     cmd->execute();
@@ -108,4 +109,8 @@ void EditorSession::newLine() {
     auto cmd=make_unique<NewLineCommand>(*currentDocument->getText(), cursor.first);
     cmd->execute();
     history->push(std::move(cmd));
+}
+
+const Repository<std::string> &EditorSession::getRecentFiles() const {
+    return recentFiles;
 }

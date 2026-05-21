@@ -27,7 +27,3 @@ void InsertCommand::undo() {
 }
 
 
-// auto line=currentDocument->getText()->getLine(cursor.first);
-// line.insert(cursor.second,text);
-// currentDocument->getText()->deleteLine(cursor.first);
-// currentDocument->getText()->insertLine(cursor.first, line);

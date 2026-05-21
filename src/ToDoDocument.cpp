@@ -13,11 +13,23 @@ ToDoDocument::ToDoDocument(std::vector<bool> checkBox, const std::string& name, 
     : Document(name, path, type, std::make_shared<Buffer>()), checkBox(std::move(checkBox)) {}
 
 void ToDoDocument::save() const {
-    FileManager::saveFile(getPath(), *getText());
+    const auto& lines=getText()->getLines();
+    vector<string> modifiedLines;
+    for (int i=0;i<lines.size();i++)
+        modifiedLines.push_back((checkBox[i] ? "[x] " : "[ ] ") + lines[i]);
+    Buffer newText(modifiedLines);
+    FileManager::saveFile(getPath(), newText);
 }
 
 void ToDoDocument::load() {
-    text=FileManager::openFile(getPath());
+    checkBox.clear();
+    text->clear();
+    auto rawBuffer = FileManager::openFile(getPath());
+    const auto& lines = rawBuffer->getLines();
+    for (int i = 0; i < lines.size(); i++) {
+        checkBox.push_back(lines[i][1] == 'x');
+        text->insertLine(i, lines[i].substr(4));
+    }
 }
 
 DocumentType ToDoDocument::getType() const {

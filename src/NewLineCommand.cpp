@@ -5,8 +5,6 @@
 
 #include "NewLineCommand.h"
 
-#include "DeleteCommand.h"
-#include "InsertCommand.h"
 
 void NewLineCommand::execute() {
     buffer.insertLine(line + 1, "");

@@ -7,14 +7,15 @@
 #include "Document.h"
 #include "CommandHistory.h"
 #include <memory>
+#include "Repository.h"
 
 class EditorSession {
     std::unique_ptr<Document> currentDocument;
     std::pair<int, int> cursor;
     std::unique_ptr<CommandHistory> history;
+    Repository<std::string> recentFiles;
     EditorSession();
-
-
+    void checkDocument() const;
 public:
     static EditorSession& getInstance() {
         static EditorSession instance;
@@ -34,8 +35,8 @@ public:
     void moveCursor(std::pair<int,int> newCursor);
     int getWordCount() const;
     std::pair<int,int> getCursor() const;
-    void checkDocument() const;
     void newLine();
+    const Repository<std::string>& getRecentFiles() const;
 };
 
 #endif //WORKSPACEEDITOR_EDITORSESSION_H
