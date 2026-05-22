@@ -48,7 +48,7 @@ A terminal-based text editor built in C++20 using FTXUI, supporting plain text a
 ## C++ Features
 - C++20 concepts (`Storable`, `Printable`)
 - Smart pointers (`unique_ptr`, `shared_ptr`, `weak_ptr`)
-- `std::filesystem` for cross-platform path management
+- `std::filesystem` for _Windows_ path management
 - Template class `Repository<T>` with concept constraints
 - Template functions `printAll<T>`, `contains<T>`
 - Structured bindings, range-based loops, lambdas, `enum class`
@@ -74,7 +74,7 @@ mkdir build && cd build
 cmake .. -DCMAKE_BUILD_TYPE=Release
 cmake --build .
 ```
-Requires: CMake 3.14+, C++20 compiler (GCC 10+ or Clang 12+)
+Requires: CMake 4.1+, C++20 compiler (GCC 10+ or Clang 12+)
 FTXUI is fetched automatically via CMake FetchContent.
 
 ## Repository
