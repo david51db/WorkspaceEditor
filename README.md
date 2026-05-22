@@ -53,6 +53,21 @@ A terminal-based text editor built in C++20 using FTXUI, supporting plain text a
 - Template functions `printAll<T>`, `contains<T>`
 - Structured bindings, range-based loops, lambdas, `enum class`
 
+## Unit Tests
+
+Tested with Catch2 v3.5.4 (fetched automatically via CMake FetchContent).
+
+To build and run tests:
+```bash
+cmake --build cmake-build-debug --target WorkspaceEditorTests
+cd cmake-build-debug && ctest --output-on-failure
+```
+
+Covered classes:
+- `Buffer` — insert, delete, get, invalid position exceptions
+- `InsertCommand` / `DeleteCommand` / `NewLineCommand` — execute and undo
+- `Repository<T>` — instantiated with `std::string` and `int`
+
 ## Compilation
 ```bash
 mkdir build && cd build
